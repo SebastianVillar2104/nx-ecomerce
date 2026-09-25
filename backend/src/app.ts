@@ -1,15 +1,14 @@
 import express from "express";
 
+import routes from "./routes/routes";
+import { errorMiddleware } from "./middlewares/error.middleware";
+
 const app = express();
 
 app.use(express.json());
 
-app.get("/health", (_req, res) => {
-  res.json({ status: "ok" });
-});
+app.use(routes);
 
-const PORT = 3000;
+app.use(errorMiddleware);
 
-app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
-});
+export default app;
