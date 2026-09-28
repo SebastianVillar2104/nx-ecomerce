@@ -1,11 +1,5 @@
 import { postgresPool } from "../database/postgres";
-
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-  stock: number;
-}
+import { Product } from "../types/product";
 
 export const findAllProducts = async (): Promise<Product[]> => {
   const result = await postgresPool.query<Product>(`
