@@ -1,11 +1,12 @@
 BEGIN;
 
-CREATE TABLE customer (
+CREATE TABLE account (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT true,
+    role VARCHAR(30) NOT NULL CHECK (role IN ('CUSTOMER', 'ADMIN')),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -21,7 +22,7 @@ CREATE TABLE product (
 
 CREATE TABLE cart (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    customer_id UUID NOT NULL,
+    account_id UUID NOT NULL,
 
     status VARCHAR(30) NOT NULL
         CHECK (status IN (
@@ -36,9 +37,9 @@ CREATE TABLE cart (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT fk_cart_customer
-        FOREIGN KEY (customer_id)
-        REFERENCES customer(id)
+    CONSTRAINT fk_cart_account
+        FOREIGN KEY (account_id)
+        REFERENCES account(id)
 );
 
 CREATE TABLE cart_item (
