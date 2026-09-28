@@ -1,0 +1,25 @@
+{
+  "name": "nx-ecommerce",
+  "version": "1.0.0",
+  "description": "E-commerce application developed as a system design and software engineering exercise.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastianVillar2104/nx-ecomerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SebastianVillar2104/nx-ecomerce/issues"
+  },
+  "homepage": "https://github.com/SebastianVillar2104/nx-ecomerce#readme",
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ]
+}

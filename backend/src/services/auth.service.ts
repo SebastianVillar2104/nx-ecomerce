@@ -4,10 +4,10 @@ import { env } from "../config/env";
 import { findAccountByEmail } from "../repositories/account.repository";
 import { AppError } from "../errors/app-error";
 import { ERROR_CODES } from "../errors/error-codes";
-import { LoginInput } from "../validations/auth.validation";
+import type { LoginRequest } from "@nx-ecommerce/shared/src/auth/auth.schema";
 
 export const validateCredentials = async (
-  input: LoginInput,
+  input: LoginRequest,
 ) => {
   const account = await findAccountByEmail(input.email);
 
