@@ -1,0 +1,8 @@
+{
+  "name": "@nx-ecommerce/shared",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "zod": "^4.6.5"
+  }
+}
