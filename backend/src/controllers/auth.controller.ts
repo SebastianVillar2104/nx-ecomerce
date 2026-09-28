@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-
 import { validateCredentials } from "../services/auth.service";
 
 export const loginController = async (
@@ -8,10 +7,7 @@ export const loginController = async (
   next: NextFunction,
 ) => {
   try {
-    const result = await validateCredentials(
-      req.body.email,
-      req.body.password,
-    );
+    const result = await validateCredentials(req.body);
 
     res.json(result);
   } catch (error) {

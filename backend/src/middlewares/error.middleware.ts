@@ -16,6 +16,7 @@ export const errorMiddleware = (
       error: {
         code: err.code,
         message: err.message,
+        ...(err.details ? { details: err.details } : {}),
       },
     });
 

@@ -4,12 +4,12 @@ import { env } from "../config/env";
 import { findAccountByEmail } from "../repositories/account.repository";
 import { AppError } from "../errors/app-error";
 import { ERROR_CODES } from "../errors/error-codes";
+import { LoginInput } from "../validations/auth.validation";
 
 export const validateCredentials = async (
-  email: string,
-  password: string,
+  input: LoginInput,
 ) => {
-  const account = await findAccountByEmail(email);
+  const account = await findAccountByEmail(input.email);
 
   if (!account || !account.active) {
     throw new AppError(
@@ -20,7 +20,7 @@ export const validateCredentials = async (
   }
 
   const passwordValid = await bcrypt.compare(
-    password,
+    input.password,
     account.password,
   );
 
