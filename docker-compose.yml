@@ -1,13 +1,24 @@
 services:
   backend:
+    platform: linux/amd64
     build:
-      context: ./backend
+      context: .
+      dockerfile: backend/Dockerfile
     ports:
-      - "3000:3000"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    environment:
+      BACKEND_PORT: ${BACKEND_PORT}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
 
   frontend:
     build:
-      context: ./frontend
+      context: .
+      dockerfile: frontend/Dockerfile
     ports:
       - "5173:5173"
   postgres:

@@ -1,15 +1,21 @@
-FROM node:22-alpine
+FROM node:22
 
 WORKDIR /app
 
 COPY package*.json ./
+COPY backend/package*.json ./backend/
+COPY shared/package*.json ./shared/
 
-RUN npm ci
+RUN npm ci --include=optional
 
-COPY . .
+COPY backend ./backend
+COPY shared ./shared
+COPY database ./database
 
-RUN npm run build
+RUN npm install --no-save @typescript/typescript-linux-x64@7.0.2
 
-EXPOSE 3000
+RUN npm run build --workspace backend
 
-CMD ["npm", "start"]
+EXPOSE 4005
+
+CMD ["npm", "run", "start", "--workspace", "backend"]

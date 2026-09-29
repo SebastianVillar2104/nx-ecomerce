@@ -4,7 +4,7 @@ import { env } from "../config/env";
 import { findAccountByEmail } from "../repositories/account.repository";
 import { AppError } from "../errors/app-error";
 import { ERROR_CODES } from "../errors/error-codes";
-import type { LoginRequest } from "@nx-ecommerce/shared/src/auth/auth.schema";
+import type { LoginRequest } from "@nx-ecommerce/shared";
 
 export const validateCredentials = async (
   input: LoginRequest,
